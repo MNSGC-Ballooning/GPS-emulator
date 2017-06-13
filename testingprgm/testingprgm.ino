@@ -12,7 +12,12 @@ Serial.begin(9600);
 }
 
 void loop() {
-  GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ);
+  for(int i = 0; i<10;i++){
+    GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ);
+    delay(1000);
+  }
+  GPS.sendCommand("simon_test_command*12");
   delay(1000);
+
 
 }
