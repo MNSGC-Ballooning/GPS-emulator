@@ -11,8 +11,10 @@ void readCommand(){
   {
     red = GPSserial.read();
     if(red!= END&&!checksum){
-      command[ndx] = red;
-      ndx++;
+      if(red!= '\r' && red!= '\n'){
+        command[ndx] = red;
+        ndx++;
+      }
     }
     else if(checksumCount>0){
       checksum = true;
@@ -21,7 +23,7 @@ void readCommand(){
       checksumCount--;
     }
     else{
-      command[ndx] = '\0';
+      command[ndx]='\0';
       ndx = 0;
       checksumCount = 3;
       checksum = false;

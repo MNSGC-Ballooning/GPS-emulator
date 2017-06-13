@@ -22,9 +22,9 @@ void setup() {
 void loop() {
   readCommand();
   if(recvd){
-    Serial.print(String(command));
+    Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
-      Serial.print("update rate set");
+      Serial.println("update rate set");
     }
     else{
       Serial.print("not set");
