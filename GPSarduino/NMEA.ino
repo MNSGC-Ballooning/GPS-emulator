@@ -1,11 +1,18 @@
 void sendNMEA(char* type, int sz){
   char toSend[MAXMESSAGE];
   int ndx=0;
-  for(ndx; ndx<sz;ndx++)
+  char lat[9];
+  /*The function "dtostrf" converts a float to a char
+   * array. The arguments are (float, width, precsion, array) 
+   * width does not seem to matter.
+   */
+  dtostrf(latf, 4, 3, lat);      
+  char longi[11];
+  dtostrf(longf, 4, 4, longi);
+  for(int i = 0; i<sz;i++)
   {
-    toSend[ndx]=type[ndx];
+    toSend[ndx++]=type[i];
   }
-  ndx++;
   toSend[ndx++] = ',';
   //add the time in format HHMMSS.ss
   int hours = Time/3600;
@@ -40,11 +47,25 @@ void sendNMEA(char* type, int sz){
     toSend[ndx++] = '0';
   }
   toSend[ndx++]= ',';
+    //add the latitude
   for(int i = 0;i<8;i++){
     toSend[ndx++] = lat[i];
   }
   toSend[ndx++] = ',';
   toSend[ndx++] = latCard;
+  toSend[ndx++] = ',';
+    //add the longitude
+  if(latf<10000){    //first see if we need to add a zero
+    toSend[ndx++] = '0';
+  }
+  
+  for(int i = 0; i<10; i++){     //send the longitude
+    if(longi[i]!=NULL){
+      toSend[ndx++] = longi[i];
+    }
+  }
+  toSend[ndx++] = ',';
+  toSend[ndx++] = longiCard;
   toSend[ndx++] = ',';
   toSend[ndx] = '\0';
   Serial.println(toSend);
