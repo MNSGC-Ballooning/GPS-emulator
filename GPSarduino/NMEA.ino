@@ -2,19 +2,22 @@ void sendNMEA(char* type, int sz){
   char toSend[MAXMESSAGE];
   int ndx=0;
   char lat[9];
+   dtostrf(latf, 1, 3, lat);
   /*The function "dtostrf" converts a float to a char
-   * array. The arguments are (float, width, precsion, array) 
+   * array. The arguments are (float, width, precsion, array). 
    * width does not seem to matter.
+   * NOTE: the alt array had to be a global variable
+   * to prevent memory allocation overlap.
    */
-  dtostrf(latf, 4, 3, lat);      
+  dtostrf(altf, 1, 1, alt);     
   char longi[11];
-  dtostrf(longf, 4, 4, longi);
+  dtostrf(longf, 1, 4, longi);
   for(int i = 0; i<sz;i++)
   {
     toSend[ndx++]=type[i];
   }
   toSend[ndx++] = ',';
-  //add the time in format HHMMSS.ss
+    //add the time in format HHMMSS.ss
   int hours = Time/3600;
   if(hours>9){
     toSend[ndx++] = '0' +(hours/10);
@@ -66,6 +69,25 @@ void sendNMEA(char* type, int sz){
   }
   toSend[ndx++] = ',';
   toSend[ndx++] = longiCard;
+  toSend[ndx++] = ',';
+    //now we add the fix data
+    //1 for fix, 0 for not fix
+  toSend[ndx++] = '1';
+  toSend[ndx++] = ',';
+     //next up is the number of satellites, anything between 4 and 10 willl do
+  toSend[ndx++] = '5';
+  toSend[ndx++] = ',';
+      //now we send the relative accuracy. 1.5 is common
+  toSend[ndx++] = '1';
+  toSend[ndx++] = '.';
+  toSend[ndx++]= '5';
+  toSend[ndx++]= ',';
+      //heres this biggie. the altitude in meters
+  for(int i = 0; i<10;i++){
+    if(alt[i]!=NULL){
+      toSend[ndx++] = alt[i];
+    }
+  }
   toSend[ndx++] = ',';
   toSend[ndx] = '\0';
   Serial.println(toSend);

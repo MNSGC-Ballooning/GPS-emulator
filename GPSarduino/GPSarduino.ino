@@ -12,7 +12,10 @@ unsigned long Time = 50000;
 float latf = 4458.843;   //DDMM.MMMM
 char latCard = 'N';
 char longiCard = 'W';
+//the alt array is global to prevent memory allocation overlap in NMEA function
+char alt[15];
 float longf = 07400.4184;  //DDDMM.MMMM
+float altf = 300.3;         //Altitude in meters
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
 //SoftwareSerial GPSserial(7,8); //Rx, Tx
