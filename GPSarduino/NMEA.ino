@@ -89,6 +89,24 @@ void sendNMEA(char* type, int sz){
     }
   }
   toSend[ndx++] = ',';
+  toSend[ndx++] = 'M';
+  toSend[ndx++] = ',';
+  
+      //next up is the altitude above elisoidal. -34.2 seems to be the standard.
+  toSend[ndx++] = '-';
+  toSend[ndx++] = '3';
+  toSend[ndx++] = '4';
+  toSend[ndx++] = '.';
+  toSend[ndx++] = '2';
+  toSend[ndx++] = ',';
+  toSend[ndx++] = 'M';
+  toSend[ndx++] = ',';
+      //extra comma on the end for some reason
+  toSend[ndx++] = ',';
+      //and finally we add the checksum
+  
+  
+  
   toSend[ndx] = '\0';
   Serial.println(toSend);
 }

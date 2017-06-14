@@ -7,7 +7,7 @@
  * date: 6/13/17
  */
 
- #define MAXMESSAGE 82
+ #define MAXMESSAGE 120
 unsigned long Time = 50000;
 float latf = 4458.843;   //DDMM.MMMM
 char latCard = 'N';
