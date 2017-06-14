@@ -39,6 +39,13 @@ void sendNMEA(char* type, int sz){
   for(int i = 0;i<3;i++){
     toSend[ndx++] = '0';
   }
+  toSend[ndx++]= ',';
+  for(int i = 0;i<8;i++){
+    toSend[ndx++] = lat[i];
+  }
+  toSend[ndx++] = ',';
+  toSend[ndx++] = latCard;
+  toSend[ndx++] = ',';
   toSend[ndx] = '\0';
   Serial.println(toSend);
 }

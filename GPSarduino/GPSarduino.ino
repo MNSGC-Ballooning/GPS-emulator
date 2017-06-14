@@ -9,6 +9,9 @@
 
  #define MAXMESSAGE 82
 unsigned long Time = 50000;
+char lat[8] = "4458.843";   //DDMM.MMMM
+char latCard = 'N';
+char longi[10] = "07400.4184";  //DDDMM.MMMM
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
 //SoftwareSerial GPSserial(7,8); //Rx, Tx
