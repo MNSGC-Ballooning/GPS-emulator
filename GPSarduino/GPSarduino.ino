@@ -8,7 +8,7 @@
  */
 
  #define MAXMESSAGE 82
-unsigned long Time = 10000;
+unsigned long Time = 50000;
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
 //SoftwareSerial GPSserial(7,8); //Rx, Tx

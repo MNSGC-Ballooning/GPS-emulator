@@ -7,16 +7,34 @@ void sendNMEA(char* type, int sz){
   }
   ndx++;
   toSend[ndx++] = ',';
-  int hours = int(Time/3600);
+  int hours = Time/3600;
   if(hours>9){
     toSend[ndx++] = '0' +(hours/10);
     toSend[ndx++] = '0' +(hours%10);
   }
   else{
     toSend[ndx++] = '0';
-    toSend[ndx++] = '0' +hours;
+    toSend[ndx++] = '0' + hours;
   }
-  toSend[ndx]= '\0';
+  int minutes = (Time%3600)/60;
+  if(minutes>9){
+    toSend[ndx++] = '0' +(minutes/10);
+    toSend[ndx++] = '0' +(minutes%10);
+  }
+  else{
+    toSend[ndx++] = '0';
+    toSend[ndx++] = '0' + minutes;
+  }
+  int seconds = (Time%60);
+  if(seconds>9){
+    toSend[ndx++] = '0' +(seconds/10);
+    toSend[ndx++] = '0' +(seconds%10);
+  }
+  else{
+    toSend[ndx++] = '0';
+    toSend[ndx++] = '0' + seconds;
+  }
+  toSend[ndx]='\0';
   Serial.println(toSend);
 }
 
