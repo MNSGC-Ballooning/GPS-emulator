@@ -7,6 +7,7 @@ void sendNMEA(char* type, int sz){
   }
   ndx++;
   toSend[ndx++] = ',';
+  //add the time in format HHMMSS.ss
   int hours = Time/3600;
   if(hours>9){
     toSend[ndx++] = '0' +(hours/10);
@@ -34,7 +35,11 @@ void sendNMEA(char* type, int sz){
     toSend[ndx++] = '0';
     toSend[ndx++] = '0' + seconds;
   }
-  toSend[ndx]='\0';
+  toSend[ndx++]='.';
+  for(int i = 0;i<3;i++){
+    toSend[ndx++] = '0';
+  }
+  toSend[ndx] = '\0';
   Serial.println(toSend);
 }
 
