@@ -1,5 +1,6 @@
 void sendNMEA(char* type, int sz){
   char toSend[MAXMESSAGE];
+  char* check;
   int ndx=0;
   char lat[9];
    dtostrf(latf, 1, 3, lat);
@@ -106,6 +107,12 @@ void sendNMEA(char* type, int sz){
       //and finally we add the checksum
   
   
+  //check = makeCheck(toSend);
+  makeCheck(toSend);
+  toSend[ndx++]='*';
+  /*for(int i =0;i<2;i++){
+    toSend[ndx++] = check[i];
+  }*/
   
   toSend[ndx] = '\0';
   Serial.println(toSend);

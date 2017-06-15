@@ -40,7 +40,7 @@ void loop() {
     recvd = false;
   }*/
   sendNMEA(GPGGA, 6);
-  delay(500);
+  delay(2000);
 }
 
 
