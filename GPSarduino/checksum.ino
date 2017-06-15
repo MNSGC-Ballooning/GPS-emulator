@@ -1,13 +1,9 @@
 void makeCheck(char* nmea, int index){
     uint16_t sum = 0; 
-    int counter = 0;
     String jerry = "";
     for (uint8_t i=1; i < MAXMESSAGE; i++) {
       if(nmea[i]!=NULL){
         sum^= nmea[i];
-      }
-      else{
-        counter++;
       }
     }
     nmea[index++] = '*';
