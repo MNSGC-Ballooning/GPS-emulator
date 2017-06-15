@@ -18,6 +18,7 @@ float longf = 07400.4184;  //DDDMM.MMMM
 float altf = 300;         //Altitude in meters. 300 is pretty standard starting place
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
+char GPRMC[6] = "$GPRMC";
 SoftwareSerial GPSserial(7,8); //Rx, Tx
 boolean recvd = false;
 
@@ -50,6 +51,7 @@ void loop() {
     }
     recvd = false;
   }
+  sendRMC(GPRMC, 6);
 }
 
 
