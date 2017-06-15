@@ -116,7 +116,6 @@ void sendNMEA(char* type, int sz){
   /*for(int i =0;i<2;i++){
     toSend[ndx++] = check[i];
   }*/
-  
   toSend[ndx] = '\0';
   Serial.println(toSend);
 }

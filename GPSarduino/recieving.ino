@@ -1,5 +1,5 @@
 
-/*void readCommand(){
+void readCommand(){
   static uint8_t ndx = 0;
   char END = '*';
   char red;
@@ -28,5 +28,5 @@
       recvd= true;
     }
   }
-}*/
+}
 

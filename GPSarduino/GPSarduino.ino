@@ -7,7 +7,8 @@
  * date: 6/13/17
  */
  #define MAXMESSAGE 120
-unsigned long Time = 50000;
+
+unsigned long Time = 50000;    //Time in seconds
 float latf = 4458.843;   //DDMM.MMMM
 char latCard = 'N';
 char longiCard = 'W';
@@ -17,29 +18,36 @@ float longf = 07400.4184;  //DDDMM.MMMM
 float altf = 300.3;         //Altitude in meters
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
-//SoftwareSerial GPSserial(7,8); //Rx, Tx
+SoftwareSerial GPSserial(7,8); //Rx, Tx
 boolean recvd = false;
 
 void setup() {
   Serial.begin(9600);
-  //GPSserial.begin(9600);
+  GPSserial.begin(9600);
   
 }
 
 void loop() {
- /* readCommand();
+  readCommand();
   if(recvd){
     Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
-      Serial.println("update rate set");
+      while(1){
+         sendNMEA(GPGGA, 6);
+         delay(1000);
+         Time++;
+         altf+=1;
+      }
     }
     else{
       Serial.print("not set");
     }
     recvd = false;
-  }*/
+  }
   sendNMEA(GPGGA, 6);
-  delay(2000);
+  delay(1000);
+  Time++;
+  altf+=1;
 }
 
 
