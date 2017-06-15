@@ -32,11 +32,17 @@ void loop() {
   if(recvd){
     Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
-      while(1){
-         sendNMEA(GPGGA, 6);
+      while(altf<30000){
+         sendGGA(GPGGA, 6);
          delay(1000);
          Time++;
          altf+=5;
+      }
+      while(altf>0){
+        sendGGA(GPGGA, 6);
+        delay(1000);
+        Time++;
+        altf-=20;
       }
     }
     else{
