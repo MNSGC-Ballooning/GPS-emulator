@@ -87,6 +87,7 @@ void sendNMEA(char* type, int sz){
   for(int i = 0; i<10;i++){
     if(alt[i]!=NULL){
       toSend[ndx++] = alt[i];
+      Serial.print(String(alt[i]));
     }
   }
   toSend[ndx++] = ',';
@@ -116,7 +117,10 @@ void sendNMEA(char* type, int sz){
   /*for(int i =0;i<2;i++){
     toSend[ndx++] = check[i];
   }*/
+  for(int i = 0; i<15;i++){
+    alt[i] = NULL;
+  }
   toSend[ndx] = '\0';
-  Serial.println(toSend);
+  GPSserial.println(toSend);
 }
 
