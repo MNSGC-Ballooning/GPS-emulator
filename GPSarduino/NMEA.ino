@@ -114,9 +114,6 @@ void sendNMEA(char* type, int sz){
   }
   makeCheck(toSend, ndx);
   ndx+=3;
-  /*for(int i =0;i<2;i++){
-    toSend[ndx++] = check[i];
-  }*/
   for(int i = 0; i<15;i++){
     alt[i] = NULL;
   }
