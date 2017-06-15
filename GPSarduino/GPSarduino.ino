@@ -36,7 +36,7 @@ void loop() {
          sendNMEA(GPGGA, 6);
          delay(1000);
          Time++;
-         altf+=1;
+         altf+=5;
       }
     }
     else{
