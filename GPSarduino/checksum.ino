@@ -12,7 +12,7 @@ void makeCheck(char* nmea, int index){
     }
     nmea[index++] = '*';
     Serial.println(String(nmea[index]));
-    jerry = String(sum, HEX);
+    jerry = toHex(sum);
     for(int i = 0;i<2;i++){
       nmea[index++] = jerry[i];
     }
