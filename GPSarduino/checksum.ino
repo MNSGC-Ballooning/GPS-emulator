@@ -7,8 +7,8 @@ void makeCheck(char* nmea, int index){
       }
     }
     nmea[index++] = '*';
-    Serial.println(String(nmea[index]));
     jerry = toHex(sum);
+    //Serial.println(String(jerry));
     for(int i = 0;i<2;i++){
       nmea[index++] = jerry[i];
     }

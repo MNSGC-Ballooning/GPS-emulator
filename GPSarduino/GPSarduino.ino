@@ -51,7 +51,11 @@ void loop() {
     }
     recvd = false;
   }
+  sendGGA(GPGGA, 6);
   sendRMC(GPRMC, 6);
+  delay(1000);
+  Time++;
+  altf+=1;
 }
 
 

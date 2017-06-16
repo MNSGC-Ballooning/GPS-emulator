@@ -87,7 +87,6 @@ void sendGGA(char* type, int sz){
   for(int i = 0; i<10;i++){
     if(alt[i]!=NULL){
       toSend[ndx++] = alt[i];
-      Serial.print(String(alt[i]));
     }
   }
   toSend[ndx++] = ',';
@@ -118,6 +117,6 @@ void sendGGA(char* type, int sz){
     alt[i] = NULL;
   }
   toSend[ndx] = '\0';
-  GPSserial.println(toSend);
+  Serial.println(toSend);
 }
 

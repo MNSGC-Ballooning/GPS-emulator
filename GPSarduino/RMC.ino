@@ -1,6 +1,8 @@
 void sendRMC(char* type, int sz){
   char toSend[MAXMESSAGE];
   String knots = "5.03";  //speed in knots
+  String trueCourse = "314.59";
+  String date = "023013";
   char check[3];
   int ndx=0;
   char lat[9];
@@ -82,7 +84,33 @@ void sendRMC(char* type, int sz){
   for(int i =0;i<4;i++){
     toSend[ndx++] = knots[i];
   }
+
+  toSend[ndx++] = ',';
+  for(int i =0; i<6;i++){
+    toSend[ndx++] = trueCourse[i];
+  }
+  toSend[ndx++] = ',';
+    //send the date
+  for(int i =0;i<6;i++){
+    toSend[ndx++] = date[i];
+  }
+    //send three commas
+  for(int i =0; i<3; i++){
+    toSend[ndx++] = ',';
+  }
+     //another A, unlike my grades
+  toSend[ndx++] = 'A';
+     //make sure ndx is null and add the checksunm
+  for(int i = ndx; i<MAXMESSAGE;i++){
+    toSend[i] = NULL;
+  }
+  makeCheck(toSend, ndx);
+  ndx+=3;
+  
+    //send the true course heading
   toSend[ndx]= '\0';
+  for(int i = 0; i<15;i++){
+    alt[i] = NULL;
+  }
   Serial.println(toSend);
 }
-
