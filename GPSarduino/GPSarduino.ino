@@ -21,7 +21,7 @@ char GPGGA[6] = "$GPGGA";
 char GPRMC[6] = "$GPRMC";
 SoftwareSerial GPSserial(7,8); //Rx, Tx
 boolean recvd = false;
-
+unsigned long Timer = 0;
 void setup() {
   Serial.begin(9600);
   GPSserial.begin(9600);
@@ -34,17 +34,22 @@ void loop() {
     Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
       while(altf<30000){
-         sendGGA(GPGGA, 6);
-         delay(1000);
-         Time++;
-         altf+=5;
+         if(millis()-Timer>1000);
+            sendGGA(GPGGA, 6);
+            sendRMC(GPRMC, 6);
+            Time++;
+            altf+=5;
+            Timer = millis();
       }
       while(altf>0){
-        sendGGA(GPGGA, 6);
-        delay(1000);
-        Time++;
-        altf-=20;
+        if(millis()-Timer>1000){
+            sendGGA(GPGGA, 6);
+            sendRMC(GPRMC, 6);
+            Timer = millis();
+            Time++;
+            altf-=20;
       }
+    }
     }
     else{
       Serial.print("not set");
