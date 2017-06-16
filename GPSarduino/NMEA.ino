@@ -1,4 +1,4 @@
-void sendNMEA(char* type, int sz){
+void sendGGA(char* type, int sz){
   char toSend[MAXMESSAGE];
   char check[3];
   int ndx=0;

@@ -18,6 +18,7 @@ float longf = 07400.4184;  //DDDMM.MMMM
 float altf = 300.3;         //Altitude in meters
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
+char GPRMC[6] = "$GPRMC";
 SoftwareSerial GPSserial(7,8); //Rx, Tx
 boolean recvd = false;
 
@@ -33,7 +34,7 @@ void loop() {
     Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
       while(1){
-         sendNMEA(GPGGA, 6);
+         sendGGA(GPGGA, 6);
          delay(1000);
          Time++;
          altf+=1;
@@ -44,7 +45,8 @@ void loop() {
     }
     recvd = false;
   }
-  sendNMEA(GPGGA, 6);
+  sendGGA(GPGGA, 6);
+  sendRMC(GPRMC, 6);
   delay(1000);
   Time++;
   altf+=1;
