@@ -1,6 +1,5 @@
 void sendGGA(char* type, int sz){
   char toSend[MAXMESSAGE];
-  char check[3];
   int ndx=0;
   char lat[9];
    dtostrf(latf, 1, 3, lat);
@@ -113,10 +112,7 @@ void sendGGA(char* type, int sz){
   }
   makeCheck(toSend, ndx);
   ndx+=3;
-  for(int i = 0; i<15;i++){
-    alt[i] = NULL;
-  }
   toSend[ndx] = '\0';
-  Serial.println(toSend);
+  GPSserial.println(toSend);
 }
 

@@ -3,7 +3,6 @@ void sendRMC(char* type, int sz){
   String knots = "5.03";  //speed in knots
   String trueCourse = "314.59";
   String date = "023013";
-  char check[3];
   int ndx=0;
   char lat[9];
     /*The function "dtostrf" converts a float to a char
@@ -84,7 +83,6 @@ void sendRMC(char* type, int sz){
   for(int i =0;i<4;i++){
     toSend[ndx++] = knots[i];
   }
-
   toSend[ndx++] = ',';
   for(int i =0; i<6;i++){
     toSend[ndx++] = trueCourse[i];
@@ -109,8 +107,5 @@ void sendRMC(char* type, int sz){
   
     //send the true course heading
   toSend[ndx]= '\0';
-  for(int i = 0; i<15;i++){
-    alt[i] = NULL;
-  }
-  Serial.println(toSend);
+  GPSserial.println(toSend);
 }
