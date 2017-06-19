@@ -15,13 +15,13 @@ char longiCard = 'W';
 //the alt array is global to prevent memory allocation overlap in NMEA function
 char alt[15];
 float longf = 07400.4184;  //DDDMM.MMMM
-float altf = 300.3;         //Altitude in meters
+float altf = 25000;         //Altitude in meters. 300 is pretty standard starting place
 char command[MAXMESSAGE];
 char GPGGA[6] = "$GPGGA";
 char GPRMC[6] = "$GPRMC";
 SoftwareSerial GPSserial(7,8); //Rx, Tx
 boolean recvd = false;
-
+unsigned long Timer = 0;
 void setup() {
   Serial.begin(9600);
   GPSserial.begin(9600);
@@ -33,23 +33,36 @@ void loop() {
   if(recvd){
     Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
-      while(1){
-         sendGGA(GPGGA, 6);
-         delay(1000);
-         Time++;
-         altf+=1;
+      while(altf<30000){
+         if(millis()-Timer>1000){
+            sendGGA(GPGGA, 6);
+            sendRMC(GPRMC, 6);
+            Serial.println(String(altf));
+            Time++;
+            altf+=5;
+            Timer = millis();
       }
+      }
+      while(altf>0){
+        if(millis()-Timer>1000){
+            sendGGA(GPGGA, 6);
+            sendRMC(GPRMC, 6);
+            Serial.println(String(altf));
+            Timer = millis();
+            Time++;
+            altf-=20;
+      }
+    }
     }
     else{
       Serial.print("not set");
     }
     recvd = false;
   }
-  sendGGA(GPGGA, 6);
-  //sendRMC(GPRMC, 6);
-  delay(1000);
+  /*sendGGA(GPGGA, 6);
+  sendRMC(GPRMC, 6);
   Time++;
-  altf+=1;
+  altf+=1;*/
 }
 
 
