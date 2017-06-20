@@ -13,6 +13,15 @@ void readSerial(){
       Serialcom[ndx]='\0';
       ndx = 0;
       recvd= true;
+      doCommand(Serialcom);
     }
   }
 }
+void doCommand(String com){
+  int toJump;
+  if(com.indexOf(JUMP)!=-1){
+    toJump = (com.substring(4, com.length())).toInt();
+    altf+= float(toJump);
+    }
+  }
+

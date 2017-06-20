@@ -1,13 +1,12 @@
 #include <Adafruit_GPS.h>
 #include <SoftwareSerial.h>
-
 /*this is the code for the communicating arduino that will send signals to the other microcontroller
  * acting as a fake GPS
  * writtten by: Simon Peterson
  * date: 6/13/17
  */
  #define MAXMESSAGE 120
-
+ #define JUMP "jump"
 unsigned long Time = 50000;    //Time in seconds
 float latf = 4458.843;   //DDMM.MMMM
 char latCard = 'N';
@@ -35,6 +34,7 @@ void loop() {
     Serial.println(String(command));
     if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
       while(altf<30480){
+         readSerial();
          if(millis()-Timer>1000){
             sendGGA(GPGGA, 6);
             sendRMC(GPRMC, 6);
@@ -45,6 +45,7 @@ void loop() {
       }
       }
       while(altf>0){
+        readSerial();
         if(millis()-Timer>1000){
             sendGGA(GPGGA, 6);
             sendRMC(GPRMC, 6);
