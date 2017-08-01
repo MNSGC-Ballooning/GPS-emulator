@@ -14,7 +14,7 @@ char longiCard = 'W';
 //the alt array is global to prevent memory allocation overlap in NMEA function
 char alt[15];
 float longf = 07400.4184;  //DDDMM.MMMM
-float altf = 26500;         //Altitude in meters. 300 is pretty standard starting place
+float altf = 300;         //Altitude in meters. 300 is pretty standard starting place
 char command[MAXMESSAGE];
 char Serialcom[20];
 char GPGGA[6] = "$GPGGA";
