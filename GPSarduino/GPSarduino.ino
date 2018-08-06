@@ -41,7 +41,18 @@ void loop() {
             sendRMC(GPRMC, 6);
             Serial.println(String(altf));
             Time++;
-            altf+=5;
+            altf+=3;
+            Timer = millis();
+          }
+      }
+      while(altf>22860){
+         readSerial();
+         if(millis()-Timer>1000){
+            sendGGA(GPGGA, 6);
+            sendRMC(GPRMC, 6);
+            Serial.println(String(altf));
+            Time++;
+            altf-=2;
             Timer = millis();
           }
       }
@@ -53,7 +64,7 @@ void loop() {
             Serial.println(String(altf));
             Timer = millis();
             Time++;
-            altf-=20;
+            altf-=10;
         }
       }
     //}
