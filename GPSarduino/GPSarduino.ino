@@ -1,5 +1,6 @@
 #include <Adafruit_GPS.h>
 #include <SoftwareSerial.h>
+
 /*this is the code for the communicating arduino that will send signals to the other microcontroller
  * acting as a fake GPS
  * writtten by: Simon Peterson
@@ -24,16 +25,16 @@ boolean recvd = false;
 unsigned long Timer = 0;
 void setup() {
   Serial.begin(9600);
-  GPSserial.begin(9600);
+  GPSserial.begin(4800);
   
 }
 
 void loop() {
   readCommand();
-  if(recvd){
+  //if(recvd){
     Serial.println(String(command));
-    if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
-      while(altf<30480){
+    //if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
+      while(altf<31000){
          readSerial();
          if(millis()-Timer>1000){
             sendGGA(GPGGA, 6);
@@ -42,7 +43,7 @@ void loop() {
             Time++;
             altf+=5;
             Timer = millis();
-      }
+          }
       }
       while(altf>0){
         readSerial();
@@ -53,14 +54,14 @@ void loop() {
             Timer = millis();
             Time++;
             altf-=20;
+        }
       }
-    }
-    }
-    else{
-      Serial.print("not set");
-    }
-    recvd = false;
-  }
+    //}
+//    else{
+//      Serial.print("not set");
+//    }
+//    recvd = false;
+  //}
   /*sendGGA(GPGGA, 6);
   sendRMC(GPRMC, 6);
   Time++;
