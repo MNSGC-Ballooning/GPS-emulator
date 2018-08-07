@@ -34,25 +34,25 @@ void loop() {
   //if(recvd){
     Serial.println(String(command));
     //if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
-      while(altf<31000){
+      while(altf<36700){
          readSerial();
          if(millis()-Timer>1000){
             sendGGA(GPGGA, 6);
             sendRMC(GPRMC, 6);
             Serial.println(String(altf));
             Time++;
-            altf+=3;
+            altf+=5;
             Timer = millis();
           }
       }
-      while(altf>22860){
+      while(altf>24200){
          readSerial();
          if(millis()-Timer>1000){
             sendGGA(GPGGA, 6);
             sendRMC(GPRMC, 6);
             Serial.println(String(altf));
             Time++;
-            altf-=2;
+            altf-=3;
             Timer = millis();
           }
       }
