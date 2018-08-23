@@ -33,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-  readCommand();
+  //readCommand();
   //if(recvd){
     Serial.println(String(command));
     //if(String(command)==PMTK_SET_NMEA_UPDATE_1HZ){
@@ -54,6 +54,7 @@ void loop() {
               altf=0;
             }
           }
+        
       }
       while(altc>24200){
          readSerial();
@@ -91,12 +92,12 @@ void loop() {
             }
         }
       }
-    //}
+    
 //    else{
 //      Serial.print("not set");
 //    }
 //    recvd = false;
-  //}
+//  }
   /*sendGGA(GPGGA, 6);
   sendRMC(GPRMC, 6);
   Time++;
