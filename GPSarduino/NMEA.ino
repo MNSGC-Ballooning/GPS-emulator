@@ -110,9 +110,19 @@ void sendGGA(char* type, int sz){
   for(int i = ndx; i<MAXMESSAGE;i++){
     toSend[i] = NULL;
   }
-  makeCheck(toSend, ndx);
-  ndx+=3;
-  toSend[ndx] = '\0';
+    uint16_t sum = 0; 
+    String jerry = "";
+    for (uint8_t i=1; i < MAXMESSAGE; i++) {
+      if(toSend[i]!=NULL){
+        sum^= toSend[i];
+      }
+    }
+    toSend[ndx++] = '*';
+    jerry = toHex(sum);
+    for(int i = 0;i<2;i++){
+      toSend[ndx++] = jerry[i];
+    }
+    Serial.println(jerry);
+  toSend[ndx++] = '\0';
   GPSserial.println(toSend);
 }
-

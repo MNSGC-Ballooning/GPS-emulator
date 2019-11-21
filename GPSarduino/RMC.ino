@@ -97,7 +97,7 @@ void sendRMC(char* type, int sz){
     toSend[ndx++] = ',';
   }
      //another A, unlike my grades
-  toSend[ndx++] = 'A';
+  toSend[ndx++] = 'D';
      //make sure ndx is null and add the checksunm
   for(int i = ndx; i<MAXMESSAGE;i++){
     toSend[i] = NULL;
