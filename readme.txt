@@ -1,6 +1,8 @@
 GPS EMULATOR
 
-by Simon Peterson
+by Simon Peterson (fixed, modified, and expanded by Jacob Meyer)
+
+---old readme---
 
 This program uses an arduino uno to act as an adafruit ultimate GPS, allowing for testing payloads
 that require GPS data without actually flying them.
@@ -16,3 +18,11 @@ when gps data gets scrambled at higher altitudes.
 
 Possible future modifications include SD GPS data reading - the Arduino reads coordinates and altitude 
 from a previous flight and sends them as GPS signals, making it possible to "refly" a previous flight.
+
+------New Readme------
+New modes that will be implemented in Fall/Winter 2019 are the "Custom" and "Flight" modes. Custom mode
+will give users the ability to specify rates of ascent and descent at any and all altitudes (on the way 
+up and down) and the user will also be able to determine when cutaway/"burst" occurs. "Flight" mode will
+use old flight data fed directly in via an SD card into the emulator. Both modes will allow much more 
+accurate and effective simulations which will allow us to debug our flight computer(s)/state machines
+ much more effectively before sending them up to 120,000+ feet. 
