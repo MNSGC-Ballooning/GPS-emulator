@@ -1,6 +1,9 @@
 GPS EMULATOR
-
 by Simon Peterson (fixed, modified, and expanded by Jacob Meyer)
+
+Revised by Andrew Van Gerpen for combatibility with Ublox GPS. (Ublox branch)
+ --> original code did not correctly output checksum value required for use with TinyGPS++ library
+ --> Modified to use old flight data in simulating a flight rather than incrementing values. Feel free to change lat,lon,and alt arrays          using flight data of your choice.
 
 ---old readme---
 
