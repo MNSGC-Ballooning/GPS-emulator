@@ -1,5 +1,5 @@
 GPS EMULATOR
-by Simon Peterson (fixed, modified, and expanded by Jacob Meyer)
+by Simon Peterson (modified by Jacob Meyer and Andrew Van Gerpen)
 
 Revised by Andrew Van Gerpen for combatibility with Ublox GPS. (UbloxGPS branch)
  --> original code did not correctly output checksum value required for use with TinyGPS++ library
