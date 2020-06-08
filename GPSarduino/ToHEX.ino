@@ -14,7 +14,6 @@ String toHex(uint16_t dec){
   char witch[2];
   
   for(int i=0; i<2; i++){
-    Serial.print( "getting here...");
     if(intVal[i] == 0){witch[i] = '0';}
     else if(intVal[i] == 1){witch[i] = '1';}
     else if(intVal[i] == 2){witch[i] = '2';}
@@ -39,12 +38,6 @@ String toHex(uint16_t dec){
   Serial.println("out = " + out);
   return out;
 }
-
-
-
-
-
-
 
 
 //  return witch;

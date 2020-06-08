@@ -9,18 +9,19 @@
  #define MAXMESSAGE 120
  #define JUMP "jump"
 unsigned long Time = 50000;    //Time in seconds
-float latf = 4458.843;   //DDMM.MMMM
+float latf = 6789.30;   //DDMM.MMMM
 char latCard = 'N';
-char longiCard = 'W';
+char longiCard = 'E';
 //the alt array is global to prevent memory allocation overlap in NMEA function
 char alt[15];
-float longf = 07400.4184;  //DDDMM.MMMM
+float longf = 2106.49;  //DDDMM.MMMM
 float altf = 300;         //Altitude in meters. 300 is pretty standard starting place
 char command[MAXMESSAGE];
 char Serialcom[20];
 char GPGGA[6] = "$GPGGA";
 char GPRMC[6] = "$GPRMC";
-SoftwareSerial GPSserial(7,8); //Rx, Tx
+SoftwareSerial GPSserial(2,3); //Rx, Tx
+//#define GPSserial Serial1
 boolean recvd = false;
 unsigned long Timer = 0;
 
@@ -46,17 +47,22 @@ void loop() {
             Time++;
             altf+=5;
             Timer = millis();
+            latf += 0.02;
+            longf += 0.02;
           }
       }
       while(altf>0){
         readSerial();
         if(millis()-Timer>1000){
             sendGGA(GPGGA, 6);
+            delay(10);
             sendRMC(GPRMC, 6);
             Serial.println(String(altf));
             Timer = millis();
             Time++;
             altf-=20;
+            latf -= 0.02;
+            longf -= 0.02;
         }
       }
     //}

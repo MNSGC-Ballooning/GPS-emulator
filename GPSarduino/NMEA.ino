@@ -125,4 +125,5 @@ void sendGGA(char* type, int sz){
     Serial.println(jerry);
   toSend[ndx++] = '\0';
   GPSserial.println(toSend);
+  Serial.println(toSend);
 }

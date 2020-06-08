@@ -108,4 +108,5 @@ void sendRMC(char* type, int sz){
     //send the true course heading
   toSend[ndx]= '\0';
   GPSserial.println(toSend);
+  Serial.println(toSend);
 }

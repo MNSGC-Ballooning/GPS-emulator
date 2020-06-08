@@ -4,7 +4,7 @@
 #include <TinyGPS++.h>
 
 //SoftwareSerial GPSserial(7,8);
-#define GPSserial Serial2
+#define GPSserial Serial4
 UbloxGPS GPS = UbloxGPS(&GPSserial);
 #define MAXMESSAGE 120
 char recieved[MAXMESSAGE];
@@ -21,13 +21,13 @@ Timer = millis();
 void loop(){
  while (GPSserial.available()) {
     GPS.update();
-    //Serial.write(GPSserial.read());
+    Serial.write(GPSserial.read());
    }
  if(millis()-Timer > 1500){
     Timer = millis();
-    //Serial.println(GPSserial.read());
+    Serial.println(GPSserial.read());
     GPSserial.read();
-    Serial.println("lat " + String(GPS.getLat(), 1)+ ", long " + String(GPS.getLon(), 1) + ", alt " + String(GPS.getAlt_feet(), 1));
+    Serial.println("lat " + String(GPS.getLat(), 3)+ ", long " + String(GPS.getLon(), 3) + ", alt " + String(GPS.getAlt_feet(), 3));
   ndx = 0;
  }
  
