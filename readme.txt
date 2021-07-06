@@ -6,26 +6,14 @@
 *********************************************************************************************************
 
 GPS EMULATOR
-by Simon Peterson (modified by Andrew Van Gerpen)
+by Simon Peterson (modified by Ben Stevens)
 
-Revised by Andrew Van Gerpen for combatibility with Ublox GPS. (UbloxGPS branch)
- --> original code did not correctly output checksum value required for use with TinyGPS++ library
- --> Modified to use old flight data in simulating a flight rather than incrementing values. Feel free to change lat,lon,and alt arrays          using flight data of your choice.
+Revised by Ben Stevens for combatibility with Ublox GPS and added ability to read GPS data from an onboard SD card (7/6/2021) 
 
----old readme---
+ --> original code only allowed for artifical GPS data to be fed
+ --> Allows for copy/paste of GPS data from old flights onto a blank SD card of same "in code" (default "TST01.CSV") 
+ --> See example file TST01.CSV attached for an example of card format
+ 
+ Upload to any teensy, connect teensy to another microcontroller via serial1 (pins 0/1 , rx/tx) and it should act as a Ublox gps feeding at once per second
 
-This program uses an arduino uno to act as an adafruit ultimate GPS, allowing for testing payloads
-that require GPS data without actually flying them.
-
-Currently sends a GGA NMEA and RMC messgages which contains latitude, longitude, fix, and altitude. Code
-can easily be modified to simulate different flight conditions.
-
-To "Jump" a certain altitude in while simulating a flight, simply type "jumpALT", where alt is the
-positive or negative altitude you wish to jump by. For example, jumping up 150 meters is done by
-typing "jump150" into the serial monitor and sending the message. Make sure the ending is set to 
-newline. Note that the jump does not automatically jump back. This is useful for testing what happens
-when gps data gets scrambled at higher altitudes.
-
-Possible future modifications include SD GPS data reading - the Arduino reads coordinates and altitude 
-from a previous flight and sends them as GPS signals, making it possible to "refly" a previous flight.
 
