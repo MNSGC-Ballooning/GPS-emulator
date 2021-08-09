@@ -88,7 +88,7 @@ void dataSort(String pass) {
     else
       altf = (altSynth * 0.3048 - (ventBy) * 0.3048);
 
-    sendGGA(GPGGA, 6);
+    sendGGA(GPGGA, 6); // This part of dataSorter actually sends the parsed data to NMEA and RMC to be further parsed into raw GPS data
     sendRMC(GPRMC, 6);
   }
 
@@ -101,7 +101,7 @@ void dataSort(String pass) {
       altf = (HitAltf*0.3048 - (ventBy) * 0.3048); 
       altCommand = false; 
 
-    sendGGA(GPGGA, 6);
+    sendGGA(GPGGA, 6); // This part of dataSorter actually sends the parsed data to NMEA and RMC to be further parsed into raw GPS data
     sendRMC(GPRMC, 6);
   }
 }
