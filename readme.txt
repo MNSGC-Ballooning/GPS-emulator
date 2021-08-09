@@ -20,10 +20,7 @@ this is the code for the communicating arduino that will send signals to the oth
     Added ability to handle negative longitudinal decimal degree coordinates (Western Hemisphere)
     Added Ability to give "bad" GPS hits for testing (altitude via alt command) 
     Added ability to communicate with a vent in order to have accurate venting emulation
-      
-    NOTE: Synthetic Flights were specifically made to be used as emulation for VENT testing,
-    while SD card flights can be used for any purpose, you just need to make or get the GPS data.
-    
+     
              MAKE SURE TO CHOOSE TRUE OR FALSE FOR LINE 27 BEFORE ANYTHING ELSE
 
     User Command List: (NOTE: all commands entered into the Serial Monitor must be in enclosed in <...> where "..." is the command)
