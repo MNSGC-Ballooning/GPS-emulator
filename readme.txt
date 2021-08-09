@@ -1,31 +1,24 @@
-*********************************************************************************************************
-*********************************************************************************************************
-********************* MASTER BRANCH WORKS WITH ADAFRUIT ULTIMATE GPS ONLY.*******************************
-********************* VISIT UBLOXGPS BRANCH IF YOU ARE USING A UBLOX      *******************************
-*********************************************************************************************************
-*********************************************************************************************************
+Main Note: Use the Synthetic Flight option for VENT TESTING ONLY. SD card flight will work for any microcontroller expecting Ublox GPS input. Connect to your device via Serial 1 on the microcontroller utilizing this code. 
 
-GPS EMULATOR
-by Simon Peterson (modified by Andrew Van Gerpen)
+this is the code for the communicating arduino that will send signals to the other microcontroller
+   acting as a fake Ublox GPS
+   Base written by: Simon Peterson/Andrew Van Gerpen      edited by: Ben Stevens  Revision #2
+   date: 6/13/17                                          date: 7/20/2021
 
-Revised by Andrew Van Gerpen for combatibility with Ublox GPS. (UbloxGPS branch)
- --> original code did not correctly output checksum value required for use with TinyGPS++ library
- --> Modified to use old flight data in simulating a flight rather than incrementing values. Feel free to change lat,lon,and alt arrays          using flight data of your choice.
+    7/21/2021 Revision List (Ben Stevens) 
+    Added ability to receive SD data in order to "re-fly" previous flights.
+    Added ability to fly a "synthetic" flight based on previous flight behavior (no SD data needed) 
+    Added custom serial receiver function (readSerial) that provides fast, clean data transfer from external serial input
+    Added ability to handle negative decimal coordinates (Western Hemisphere)
+    Added Ability to give "bad" GPS hits for testing (altitude) 
+    Added ability to communicate with a vent in order to have accurate venting emulation
 
----old readme---
+    NOTE: Synthetic Flights were specifically made to be used as emulation for VENT testing,
+    while SD card flights can be used for any purpose, you just need to make or get the GPS data.
+    
+             MAKE SURE TO CHOOSE TRUE OR FALSE FOR LINE 27 BEFORE ANYTHING ELSE
 
-This program uses an arduino uno to act as an adafruit ultimate GPS, allowing for testing payloads
-that require GPS data without actually flying them.
-
-Currently sends a GGA NMEA and RMC messgages which contains latitude, longitude, fix, and altitude. Code
-can easily be modified to simulate different flight conditions.
-
-To "Jump" a certain altitude in while simulating a flight, simply type "jumpALT", where alt is the
-positive or negative altitude you wish to jump by. For example, jumping up 150 meters is done by
-typing "jump150" into the serial monitor and sending the message. Make sure the ending is set to 
-newline. Note that the jump does not automatically jump back. This is useful for testing what happens
-when gps data gets scrambled at higher altitudes.
-
-Possible future modifications include SD GPS data reading - the Arduino reads coordinates and altitude 
-from a previous flight and sends them as GPS signals, making it possible to "refly" a previous flight.
+    User Command List: (NOTE: all commands entered into the Serial Monitor must be in enclosed in <...> where "..." is the command)
+          <JUMP#> : Sets altitude to # in feet
+           <ALT#>  : Sets altitude to # in feet for only one GPS hit (for bad GPS hit testing)
 
