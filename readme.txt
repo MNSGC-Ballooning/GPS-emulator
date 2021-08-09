@@ -1,6 +1,6 @@
 Main Note: Use the Synthetic Flight option for VENT TESTING ONLY. 
            SD card flight will work for any microcontroller expecting Ublox GPS input. 
-           Connect to your device via Serial 1 on the microcontroller utilizing this code. 
+           Connect to your device via Serial 1 (Teensy pins 0/1) on the microcontroller utilizing this code. 
          
 this is the code for the communicating arduino that will send signals to the other microcontroller
    acting as a fake Ublox GPS
