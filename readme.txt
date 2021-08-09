@@ -1,5 +1,7 @@
-Main Note: Use the Synthetic Flight option for VENT TESTING ONLY. SD card flight will work for any microcontroller expecting Ublox GPS input. Connect to your device via Serial 1 on the microcontroller utilizing this code. 
-
+Main Note: Use the Synthetic Flight option for VENT TESTING ONLY. 
+           SD card flight will work for any microcontroller expecting Ublox GPS input. 
+           Connect to your device via Serial 1 on the microcontroller utilizing this code. 
+         
 this is the code for the communicating arduino that will send signals to the other microcontroller
    acting as a fake Ublox GPS
    Base written by: Simon Peterson/Andrew Van Gerpen      edited by: Ben Stevens  Revision #2
@@ -14,8 +16,8 @@ this is the code for the communicating arduino that will send signals to the oth
       --> Based off of computer generated functions that simulate an "ideal" flight
       
     Added custom serial receiver function (readSerial) that provides fast, clean data transfer from external serial input
-    Added ability to handle negative decimal coordinates (Western Hemisphere)
-    Added Ability to give "bad" GPS hits for testing (altitude) 
+    Added ability to handle negative longitudinal decimal degree coordinates (Western Hemisphere)
+    Added Ability to give "bad" GPS hits for testing (altitude via alt command) 
     Added ability to communicate with a vent in order to have accurate venting emulation
       
     NOTE: Synthetic Flights were specifically made to be used as emulation for VENT testing,
@@ -24,6 +26,6 @@ this is the code for the communicating arduino that will send signals to the oth
              MAKE SURE TO CHOOSE TRUE OR FALSE FOR LINE 27 BEFORE ANYTHING ELSE
 
     User Command List: (NOTE: all commands entered into the Serial Monitor must be in enclosed in <...> where "..." is the command)
-          <JUMP#> : Sets altitude to # in feet
-           <ALT#>  : Sets altitude to # in feet for only one GPS hit (for bad GPS hit testing)
+          <JUMP#>  : Sets altitude to # in feet
+          <ALT#>   : Sets altitude to # in feet for only one GPS hit (for bad GPS hit testing)
 
