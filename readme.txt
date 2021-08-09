@@ -10,7 +10,8 @@ this is the code for the communicating arduino that will send signals to the oth
     7/21/2021 Revision List (Ben Stevens) 
     Added ability to receive SD data in order to "re-fly" previous flights.
       --> Allows for copy/paste of GPS data from old flights onto a blank SD card of same name "in code" (default "TST01.CSV") 
-      --> See example file TST01.CSV attached for an example of card format, you can change the name of this file, but change it in code too (line 87)
+      --> See example file TST01.CSV attached for an example of card format, 
+          you can change the name of this file, but change it in code too (line 87)
       
     Added ability to fly a "synthetic" flight based on previous flight behavior (no SD data needed) 
       --> Based off of computer generated functions that simulate an "ideal" flight
