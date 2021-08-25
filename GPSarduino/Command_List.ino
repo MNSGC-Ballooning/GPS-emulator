@@ -36,7 +36,8 @@ void CommandRead(String command) {
       }
       digitalWrite(LED_BUILTIN, LOW);
       stateChange = true;
-      if( isLeaking == true){ 
+      
+      if( isLeaking == true){ //emulate fixing of leak when vent detects is and tries to jiggle the vent
         isLeaking = false; 
         Serial.println("LEAK SEALED!"); 
       }

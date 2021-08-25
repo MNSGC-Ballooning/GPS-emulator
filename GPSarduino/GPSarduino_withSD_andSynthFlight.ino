@@ -13,7 +13,7 @@
     Added custom serial receiver function (readSerial) that provides fast, clean data transfer from external serial input
     Added ability to handle negative decimal coordinates (Western Hemisphere)
     Added Ability to give "bad" GPS hits for testing
-    Added ability to communicate with vent inorder to have accurate venting emulation
+    Added ability to communicate with vent in order to have accurate venting emulation
 
     NOTE: Synthetic Flights were specifically made to be used as emulation for VENT testing,
     while SD card flights can be used for any purpose, you just need to make or get the GPS data.
