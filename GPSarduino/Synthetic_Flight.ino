@@ -22,6 +22,9 @@ void SyntheticFlight() {
       leak = -0.0089 * leakIndx; 
       leakIndx++; 
     }
+    if(lastAlt > 130000){ // emulate the bursting of the balloon if it goes too high 
+      CommandRead("TERM");
+    }
 
     if (TerminationCheck == true) {  //function to simulate altitude behavior of GPS data post-termination (mathmatical function based on averages of parachute descents)
       if (lastAlt > 1000) {
@@ -141,6 +144,6 @@ void SyntheticFlight() {
     Serial.println("Leak Rate -(ft/s) : " + String(leak));
     Serial.println("   ");
     Time++;
-    delay(500);
+    delay(999);
   }
 }

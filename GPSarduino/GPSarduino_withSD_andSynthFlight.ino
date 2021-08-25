@@ -32,7 +32,6 @@ bool SDFlight = false; //  "true" for an SD "refly" of exsisting data, set to "f
 //////////SETUP Variables for Synthetic FLight/////////// ///change these for each synthetic flight if you choose 
 /////////////////////////////////////////////////////////
 int seed = 9696; ///CHANGE SEED FOR RNG, ELSE ALTITUDE INCREASE RANDOMNESS WILL ALWAYS BE THE SAME  
-float maxAlt = 115000; /// Altitude (ft) in which the balloon will begin to descend (to be integrated) 
 float latSynth = 44.4444; 
 float longSynth = -92.3338;
 float altSynth = 1000; 
