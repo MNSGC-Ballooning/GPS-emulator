@@ -87,9 +87,10 @@ void dataSort(String pass) {
       altf = ((alti.toFloat()) * 0.3048 - (ventBy) * 0.3048); //convert from ft to m minus the amount to be vented by
     else
       altf = (altSynth * 0.3048 - (ventBy) * 0.3048);
-
-    sendGGA(GPGGA, 6); // This part of dataSorter actually sends the parsed data to NMEA and RMC to be further parsed into raw GPS data
-    sendRMC(GPRMC, 6);
+      
+    sendGGA(GPGGA, 6); // command to actually send the data
+    sendRMC(GPRMC, 6); // // 
+    
   }
 
   
@@ -97,11 +98,13 @@ void dataSort(String pass) {
     
     if (altCommand == false)
       altf = ((alti.toFloat()) * 0.3048 - (ventBy) * 0.3048); //convert from ft to m minus the amount to be vented by
-    else
+    else{
       altf = (HitAltf*0.3048 - (ventBy) * 0.3048); 
       altCommand = false; 
-
-    sendGGA(GPGGA, 6); // This part of dataSorter actually sends the parsed data to NMEA and RMC to be further parsed into raw GPS data
+    }
+    
+    Serial.println("Current Alt: " + String(altf/0.3048) + " ft");
+    sendGGA(GPGGA, 6);
     sendRMC(GPRMC, 6);
   }
 }

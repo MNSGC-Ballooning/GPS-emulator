@@ -1,3 +1,4 @@
+
 //#include <Adafruit_GPS.h>
 #include <SoftwareSerial.h>
 #include <SD.h>
@@ -12,7 +13,7 @@
     Added custom serial receiver function (readSerial) that provides fast, clean data transfer from external serial input
     Added ability to handle negative decimal coordinates (Western Hemisphere)
     Added Ability to give "bad" GPS hits for testing
-    Added ability to communicate with vent in order to have accurate venting emulation
+    Added ability to communicate with vent inorder to have accurate venting emulation
 
     NOTE: Synthetic Flights were specifically made to be used as emulation for VENT testing,
     while SD card flights can be used for any purpose, you just need to make or get the GPS data.
@@ -31,16 +32,20 @@ bool SDFlight = false; //  "true" for an SD "refly" of exsisting data, set to "f
 //////////SETUP Variables for Synthetic FLight/////////// ///change these for each synthetic flight if you choose 
 /////////////////////////////////////////////////////////
 int seed = 9696; ///CHANGE SEED FOR RNG, ELSE ALTITUDE INCREASE RANDOMNESS WILL ALWAYS BE THE SAME  
-float maxAlt = 115000; /// Altitude (ft) in which the balloon will begin to descend 
+float maxAlt = 115000; /// Altitude (ft) in which the balloon will begin to descend (to be integrated) 
 float latSynth = 44.4444; 
 float longSynth = -92.3338;
 float altSynth = 1000; 
+
+float leak = 0; 
+bool isLeaking = false; 
 String SynthData = ""; 
 float lastAlt = 0; 
 float AltTerminatedAt = 0; 
 bool TerminationCheck = false; 
 float CurrentRate = 0; 
 bool emulationActive = false; 
+ 
 
 ///////////////////////////////////
 ///////////GPS Variables///////////

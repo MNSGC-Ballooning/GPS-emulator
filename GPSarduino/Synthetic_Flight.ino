@@ -1,6 +1,7 @@
 int TermIndx = 0;
 int VentIndx = 0;
 float NewRate = 0;
+int leakIndx = 0; 
 void SyntheticFlight() {
 
   ReadSerial(); //check for command
@@ -17,6 +18,10 @@ void SyntheticFlight() {
       HoldAlt = altSynth;
       altSynth = HitAltf;
     }
+    if(isLeaking == true){ 
+      leak = -0.0089 * leakIndx; 
+      leakIndx++; 
+    }
 
     if (TerminationCheck == true) {  //function to simulate altitude behavior of GPS data post-termination (mathmatical function based on averages of parachute descents)
       if (lastAlt > 1000) {
@@ -30,21 +35,21 @@ void SyntheticFlight() {
     }
 
 
-    else if (ventState == true) {  //function to simulates ascent/decent during vent events
+    else if (ventState == true) {  //function to simulates ascent/decent during vent events, WILL INFLUENCE ASCENT RATE IF ALTITUDE IS BELOW 80,000 FEET (unrealistic, but no data exsists to model this behavior) 
 
-      if (lastAlt >= 80000) {
+      if (lastAlt >= 80000) { // simulates vent rate above 80,000 feet 
 
         altSynth = lastAlt + (CurrentRate - (0.0506 * VentIndx));
         VentIndx++;
         NewRate = altSynth - lastAlt; // make new rate
       }
-      else if (lastAlt >= 100000) {
+      else if (lastAlt >= 100000) { //simulates vent rate above 100,000 feet 
 
         altSynth = lastAlt + (CurrentRate - (0.158 * VentIndx));
         VentIndx++;
         NewRate = altSynth - lastAlt; // make new rate
       }
-      else if (lastAlt >= 108000) {
+      else if (lastAlt >= 108000) { // simualtes vent rate above 108,000 feet
         altSynth = lastAlt + (CurrentRate - (0.1835 * VentIndx));
         VentIndx++;
         NewRate = altSynth - lastAlt; // make new rate
@@ -59,22 +64,22 @@ void SyntheticFlight() {
 
         if ( PlusMinus == 1) {
 
-          altSynth = (altSynth + 16 + randomChange);
+          altSynth = (altSynth + 16 + randomChange + leak);
         }
         else {
 
-          altSynth = (altSynth + 16 - randomChange);
+          altSynth = (altSynth + 16 - randomChange + leak);
         }
       }
 
       else if ( ventCounter == 0 && lastAlt > 50000) {
         if ( PlusMinus == 1) {
 
-          altSynth = (altSynth + 13 + randomChange);
+          altSynth = (altSynth + 13 + randomChange + leak);
         }
         else {
 
-          altSynth = (altSynth + 13 - randomChange);
+          altSynth = (altSynth + 13 - randomChange + leak);
         }
       }
 
@@ -82,11 +87,11 @@ void SyntheticFlight() {
 
         if ( PlusMinus == 1) {
 
-          altSynth = (altSynth + NewRate + randomVent);
+          altSynth = (altSynth + NewRate + randomVent + leak);
         }
         else {
 
-          altSynth = (altSynth + NewRate - randomVent);
+          altSynth = (altSynth + NewRate - randomVent + leak);
         }
       }
 
@@ -133,8 +138,9 @@ void SyntheticFlight() {
 
     Serial.println("Current Rate (ft/s) : " + String(altSynth - lastAlt)); //use to check rates in ft/s
     Serial.println("Current Altitude (ft) : " + String(altSynth));
+    Serial.println("Leak Rate -(ft/s) : " + String(leak));
     Serial.println("   ");
     Time++;
-    delay(999);
+    delay(500);
   }
 }

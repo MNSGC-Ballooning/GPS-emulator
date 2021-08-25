@@ -36,6 +36,10 @@ void CommandRead(String command) {
       }
       digitalWrite(LED_BUILTIN, LOW);
       stateChange = true;
+      if( isLeaking == true){ 
+        isLeaking = false; 
+        Serial.println("LEAK SEALED!"); 
+      }
     }
     else if ( command == "1" && stateChange == true) { ///vent is OPEN
       ventState = true;
@@ -56,6 +60,10 @@ void CommandRead(String command) {
   else if (command.startsWith("TERM")) {
     TerminationCheck = true;
     AltTerminatedAt = altSynth;
+  }
+  else if (command.startsWith("LEAK")){
+    isLeaking = true;  
+    Serial.println("Leak Begining!"); 
   }
 
 }

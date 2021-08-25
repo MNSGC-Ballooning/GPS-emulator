@@ -117,7 +117,7 @@ void sendRMC(char* type, int sz) {
   toSend[ndx] = '\0';
   GPSserial.println(toSend);
   GPSserial.flush();
- Serial.println(toSend);
- Serial.flush();
+ //Serial.println(toSend);
+ //Serial.flush();
 
 }
