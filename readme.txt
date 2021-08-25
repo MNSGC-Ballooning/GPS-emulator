@@ -24,6 +24,8 @@ this is the code for the communicating arduino that will send signals to the oth
              MAKE SURE TO CHOOSE TRUE OR FALSE FOR LINE 27 BEFORE ANYTHING ELSE
 
     User Command List: (NOTE: all commands entered into the Serial Monitor must be in enclosed in <...> where "..." is the command)
+          <START>  : Begins the emulation 
           <JUMP#>  : Sets altitude to # in feet
           <ALT#>   : Sets altitude to # in feet for only one GPS hit (for bad GPS hit testing)
+          <LEAK>   : Begins emulation of a leak in the vent, will continue until vent tries to fix it 
 
