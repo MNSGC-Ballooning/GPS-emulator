@@ -1,11 +1,32 @@
 Main Note: Use the Synthetic Flight option for VENT TESTING ONLY. 
            SD card flight will work for any microcontroller expecting Ublox GPS input. 
            Connect to your device via Serial 1 (Teensy pins 0/1) on the microcontroller utilizing this code. 
-         
 this is the code for the communicating arduino that will send signals to the other microcontroller
    acting as a fake Ublox GPS
-   Base written by: Simon Peterson/Andrew Van Gerpen      edited by: Ben Stevens  Revision #2
-   date: 6/13/17                                          date: 7/20/2021
+   Base written by: Simon Peterson/Andrew Van Gerpen
+   date: 6/13/17                                          
+
+
+---------------GPS Emulator 6-6-22 -------------------
+edited by Ethan Thompson-Jewell
+
+This version of the Emulator has all the same functionality
+as previous versions: 
+			Update List:
+6/3/22----> 
+-modified how ascent rate gets calculated. now based on a Gaussian noise function 'calcRandAscentRate' with a set mean and standard deviation (Synthetic_Flight)
+-added altToTerminateAT, a variable that is in 'set up variables' section which determines what altitude the balloon will burst at and begin termination
+-added prevent#Alt variables which specify logic in how much to reduce ascent rate mean while venting during specific height intervals
+-got rid of Currentrate and NewRate logic and replaced it with more strait forward 'calcRandAscentRate' logic
+-All communication with the Veting device has remained the same from the previous version, nothing has changed. 
+-vent command before prevent1Alt no longer breaks the emulator
+6/6/22 ---->
+--There was an issue with the update times that the emulator calculated and when the Vent was requesting data from the GPS. The loop that was outputting GPS data was
+looping every 1.15 seconds so every 4th cycle the GPS data givin to the Vent was not current. This was been fixed using a while loops that makes sure its 1s until
+loop() runs again
+------------------------------------------------------
+
+
 
     7/21/2021 Revision List (Ben Stevens) 
     Added ability to receive SD data in order to "re-fly" previous flights.
