@@ -6,6 +6,12 @@ this is the code for the communicating arduino that will send signals to the oth
    Base written by: Simon Peterson/Andrew Van Gerpen
    date: 6/13/17                                          
 
+---------------GPS Emulator 6-6-22 -------------------
+edited by Ethan Thompson-Jewell
+changed: (all of these changes are commented out, 
+not deleted yet if they work will delete them later
+--> venting can not occur at any altitude
+--> ascent rate reduction is not constant for any altitude
 
 ---------------GPS Emulator 6-6-22 -------------------
 edited by Ethan Thompson-Jewell

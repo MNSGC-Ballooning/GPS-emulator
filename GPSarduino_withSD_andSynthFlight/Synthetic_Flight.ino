@@ -46,19 +46,24 @@ void SyntheticFlight() {
 
     //else because if termination is happening/has happened if termination is true then uses termination decent logic instead
     else if (ventState == true) {  //checks to see if currently venting, WILL INFLUENCE ASCENT RATE IF ALTITUDE IS BELOW 80,000 FEET (unrealistic, but no data exsists to model this behavior)
-
-      if ( lastAlt < 75000) { //this is a error case of venting. if the vent tries to vent before it is supposed to IE before prevent 1 alt, then nothing happens and it ascends as usual
+/*
+      if ( lastAlt < 60000) { //this is a error case of venting. if the vent tries to vent before it is supposed to IE before prevent 1 alt, then nothing happens and it ascends as usual
         altSynth = lastAlt + calcRandAscentRate(meanAscentRate, ascentRateSD);
       }
       else {
-        if (lastAlt >= prevent1Alt) { // simulates vent rate above 75,000 feet. variable is 'set up variables'
+
+        */
+      
+       // if (lastAlt >= prevent1Alt) { // simulates vent rate above 70,000 feet. variable is 'set up variables'
 
           meanAscentRate -= (0.0459);// adjusts mean ascent rate down 0.0459ft/s for 1s of venting. seyon found this number based on GL175 venting data
 
           altSynth = lastAlt + calcRandAscentRate(meanAscentRate, ascentRateSD); //sets new altidude based on last alt plus current ascent rate ajusted for vent plus noise
 
-        }
-        else if (lastAlt >= prevent2Alt) { //simulates vent rate above 85K feet. variable is 'set up variables'
+      //  }
+        //commented out to possible change the emulator so there is a constant decrease in ascent rate
+        /*
+        else if (lastAlt >= prevent2Alt) { //simulates vent rate above 80K feet. variable is 'set up variables'
 
           //adjust mean ascent rate down for 1s of venting
           meanAscentRate -= 0.158;  //not sure where 0.158 is from
@@ -67,7 +72,7 @@ void SyntheticFlight() {
           altSynth = lastAlt + calcRandAscentRate(meanAscentRate, ascentRateSD);
 
         }
-        else if (lastAlt >= prevent3Alt) { // simualtes vent rate above 95K feet. variable is 'set up variables'
+        else if (lastAlt >= prevent3Alt) { // simualtes vent rate above 90K feet. variable is 'set up variables'
 
           //ajust mean ascent rate down for 1s of venting
           meanAscentRate -= 0.1835;  //not sure where 0.1835 is from
@@ -76,6 +81,7 @@ void SyntheticFlight() {
           altSynth = lastAlt + calcRandAscentRate(meanAscentRate, ascentRateSD);
 
         }
+        */
 
         //serial print commands to show while venting
         VentIndx++; //increment how long vent has been open
@@ -94,7 +100,7 @@ void SyntheticFlight() {
           ascentRateSD -= postVentNoiseReduction;
         }
 
-      } //end of if statement that sees if alt is below prevent1 alt
+     // } //end of if statement that sees if alt is below prevent1 alt
     } //end of if statement checking if ventState == true
 
     else if (ventState == false ) {   // checks to see if not venting, if not venting then controls ascent based on constant ascent of 16 ft/s (~5m/s) with noise of increase to simulate Ublox GPS
@@ -112,10 +118,12 @@ void SyntheticFlight() {
       }
 
       else if (ventHasBeenUsed == false && lastAlt > 50000) { //if has never vented and above 50,000ft slow down ascent rate to 13ft/s base +/- noise
-
+        //commenting out so it has a constant ascent rate all the way up: 
+        /*
         if (meanAscentRateEnteredByUser == false) { //if a meanAscentRate has been entered by user then dont reset it here
           meanAscentRate = ascentRate50kPlus; //setting new mean ascentRate specified in 'set up variables' usually 13ft/s at 50k+
         }
+        */
         if (ascentRateSDEnteredByUser == false) { //if an ascent rate SD has been entered by user then dont reset it here
           ascentRateSD = 2;     //Ascent Rate SD is set to 2 after 50,000 ft this is from analysis of GL175
         }

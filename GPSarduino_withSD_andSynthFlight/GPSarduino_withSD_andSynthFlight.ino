@@ -1,4 +1,4 @@
-//=============================================Edit to emultor code 6-6-22 by Ethan Thompson-Jewell  =======================================
+//=============================================Edit to emultor code 6-27-22 by Ethan Thompson-Jewell  =======================================
 
 //==========================================================================================================================================
 //#include <Adafruit_GPS.h>
@@ -20,7 +20,7 @@
     NOTE: Synthetic Flights were specifically made to be used as emulation for VENT testing,
     while SD card flights can be used for any purpose, you just need to make or get the GPS data.
 
-             MAKE SURE TO CHOOSE TRUE OR FALSE FOR LINE 27 BEFORE ANYTHING ELSE
+             MAKE SURE TO CHOOSE TRUE OR FALSE FOR LINE 31 BEFORE ANYTHING ELSE
 
     User Command List: (NOTE: all commands entered into the Serial Monitor must be in enclosed in <...> where "..." is the command)
           <JUMP#> : Sets altitude to # in feet
@@ -34,8 +34,8 @@ bool SDFlight = false; //  "true" for an SD "refly" of exsisting data, set to "f
 //////////SETUP Variables for Synthetic FLight/////////// ///change these for each synthetic flight if you choose
 /////////////////////////////////////////////////////////
 int seed = 9696; ///CHANGE SEED FOR RNG, ELSE ALTITUDE INCREASE RANDOMNESS WILL ALWAYS BE THE SAME
-float latSynth = 44.4444;
-float longSynth = -92.3338;
+float latSynth = 0.444;
+float longSynth = -93.8;
 float altSynth = 1000;
 
 float leak = 0;
@@ -50,12 +50,12 @@ bool emulationActive = false;
 
 float altToTerminateAt = 110000;  //variable that if altitude is reached balloon will automatically burst
 float ascentRateAtLaunch = 16;    //variable that sets the base ascent rate at launch here 16ft/s
-float ascentRate50kPlus = 13;
+//float ascentRate50kPlus = 13;  //not using currently
 float postVentNoiseReduction = 0; //change this variable if want the feature of having less GPS uncertianty after venting. this variable reduces the SD of ascentrate after first time venting happens
 
-int prevent1Alt = 75000; //altitudes for each prevent to start
-int prevent2Alt = 85000;
-int prevent3Alt = 95000;
+int prevent1Alt = 70000; //altitudes for each prevent to start
+int prevent2Alt = 80000;
+int prevent3Alt = 90000;
 
 //================================================VARIABLES TO ADJUST BALLOONS ASCENT RATE================================================================
 const float two_pi = 6.28318530718;
@@ -139,7 +139,7 @@ void setup() {
     SDSetup();
   }
   randomSeed(seed); //change to random number else flight will be the same
-  Serial.println("Using code edited 6-3-22");                            //////////////////////////////CHANGE DATE WHEN DONE EDITING ///////////////////////////////////
+  Serial.println("Using code edited 6-27-22");                            //////////////////////////////CHANGE DATE WHEN DONE EDITING ///////////////////////////////////
 }
 
 void loop() {
