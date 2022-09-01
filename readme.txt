@@ -4,6 +4,7 @@ Main Note: Use the Synthetic Flight option for VENT TESTING ONLY.
 this is the code for the communicating arduino that will send signals to the other microcontroller
    acting as a fake Ublox GPS
    Base written by: Simon Peterson/Andrew Van Gerpen
+   Edited by Ethan Thompson-Jewell
    date: 6/13/17                                          
 
 ---------------GPS Emulator 6-6-22 -------------------
