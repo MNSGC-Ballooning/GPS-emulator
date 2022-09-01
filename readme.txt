@@ -10,7 +10,7 @@ this is the code for the communicating arduino that will send signals to the oth
 edited by Ethan Thompson-Jewell
 changed: (all of these changes are commented out, 
 not deleted yet if they work will delete them later
---> venting can not occur at any altitude
+--> venting can now occur at any altitude
 --> ascent rate reduction is not constant for any altitude
 
 ---------------GPS Emulator 6-6-22 -------------------
